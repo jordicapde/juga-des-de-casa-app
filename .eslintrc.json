@@ -1,0 +1,11 @@
+{
+    "root": true,
+    "overrides": [
+        {
+            "files": ["**/*.jsx"],
+            "rules": {
+                "no-undef": "off"
+            }
+        }
+    ]
+}
