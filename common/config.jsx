@@ -32,7 +32,7 @@ ConfigTools.selectConfigFile = function(configFolder) {
 
     var files = configFolder.getFiles("*.json");
 
-    if (files.length == 0) {
+    if (files.length === 0) {
         alert("No s'han trobat fitxers JSON a la carpeta config.");
         return null;
     }
@@ -74,7 +74,7 @@ ConfigTools.selectConfigFile = function(configFolder) {
         dialog.close(0);
     };
 
-    if (dialog.show() != 1) {
+    if (dialog.show() !== 1) {
         return null;
     }
 

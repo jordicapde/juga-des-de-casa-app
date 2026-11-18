@@ -19,22 +19,22 @@ var template = app.activeDocument;
 function makeInit(content) {
 	var initLayerSet = template.layerSets["Daus"];
 	
-	if (content[0] == "E")
+	if (content[0] === "E")
 		initLayerSet.layerSets["Inici"].layers["Vermell negre"].visible = true;
 	else
 		initLayerSet.layerSets["Inici"].layers["Vermell blanc"].visible = true;
 	
-	if (content[1] == "C")
+	if (content[1] === "C")
 		initLayerSet.layers["Calamar"].visible = true;
 	else
 		initLayerSet.layers["Cargol"].visible = true;
 
-	if (content[2] == "T")
+	if (content[2] === "T")
 		initLayerSet.layers["Taronja"].visible = true;
 	else
 		initLayerSet.layers["Lila"].visible = true;
 	
-	if (content[3] == "R")
+	if (content[3] === "R")
 		initLayerSet.layers["Ratlles"].visible = true;
 	else
 		initLayerSet.layers["Punts"].visible = true;
@@ -58,9 +58,9 @@ function makeCell(index, content) {
 	*/
 
 	var type = LAYER_NAMES[content];
-	if (content == "G" || content == "B" || content == "V")
+	if (content === "G" || content === "B" || content === "V")
 		cellLayerSet.layerSets["Laboratoris"].layers[type].visible = true;
-	else if (content == "R" || content == "MC" || content == "MF" || content == "MP")
+	else if (content === "R" || content === "MC" || content === "MF" || content === "MP")
 		cellLayerSet.layerSets["Extres"].layers[type].visible = true;
 	else
 		cellLayerSet.layerSets["Bitxos"].layers[type].visible = true;
@@ -80,7 +80,7 @@ function makeSolution(initContent, grid) {
 	for (var i = 1; i < grid.length; i++) {
 		var index, content;
 
-		if (direction == "D") {
+		if (direction === "D") {
 			index = i;
 		} else {
 			index = grid.length - i;
@@ -88,14 +88,14 @@ function makeSolution(initContent, grid) {
 		content = grid[index];
 		
 		// Hem arribat a la solució
-		if (content == solution && !dinsReixeta) {
+		if (content === solution && !dinsReixeta) {
 			makeSolutionCell(direction, index, true, false, false, false);
 			solutionLayerSet.layerSets[index].layers["Solució"].visible = true;
 			break;
 		}
 		
 		// Reixeta
-		if (content == "R") {
+		if (content === "R") {
 			if (dinsReixeta)
 				makeSolutionCell(direction, index, false, true, true, false);
 			else
@@ -105,21 +105,21 @@ function makeSolution(initContent, grid) {
 		}
 		
 		// Mutació
-		if ((content == "MF" || content == "MC" || content == "MP") && !dinsReixeta) {
+		if ((content === "MF" || content === "MC" || content === "MP") && !dinsReixeta) {
 			makeSolutionCell(direction, index, true, true, false, false);
 			
-			if (content == "MF") {
-				if (solution[0] == "C")
+			if (content === "MF") {
+				if (solution[0] === "C")
 					solution = "G" + solution[1] + solution[2];
 				else
 					solution = "C" + solution[1] + solution[2];
-			} else if (content == "MC") {
-				if (solution[1] == "T")
+			} else if (content === "MC") {
+				if (solution[1] === "T")
 					solution = solution[0] + "L" + solution[2];
 				else
 					solution = solution[0] + "T" + solution[2];
 			} else {
-				if (solution[2] == "R")
+				if (solution[2] === "R")
 					solution = solution[0] + solution[1] + "P";
 				else
 					solution = solution[0] + solution[1] + "R";
@@ -132,7 +132,7 @@ function makeSolutionCell(direction, index, outerIn, outerOut, innerIn, innerOut
 	var solutionCellLayerSet = template.layerSets["Solució"].layerSets[index];
 	
 	if (innerIn) {
-		if (direction == "E") {
+		if (direction === "E") {
 			solutionCellLayerSet.layerSets["In_Dre"].visible = true;
 			solutionCellLayerSet.layerSets["In_Dre"].layers["Fletxa"].visible = true;
 		} else {
@@ -141,7 +141,7 @@ function makeSolutionCell(direction, index, outerIn, outerOut, innerIn, innerOut
 		}
 	}
 	if (innerOut) {
-		if (direction == "E") {
+		if (direction === "E") {
 			solutionCellLayerSet.layerSets["In_Esq"].visible = true;
 			solutionCellLayerSet.layerSets["In_Esq"].layers["Fletxa"].visible = false;
 		} else {
@@ -151,7 +151,7 @@ function makeSolutionCell(direction, index, outerIn, outerOut, innerIn, innerOut
 	}
 	
 	if (outerIn) {
-		if (direction == "E") {
+		if (direction === "E") {
 			solutionCellLayerSet.layerSets["Out_Dre"].visible = true;
 			solutionCellLayerSet.layerSets["Out_Dre"].layers["Fletxa"].visible = true;
 		} else {
@@ -160,7 +160,7 @@ function makeSolutionCell(direction, index, outerIn, outerOut, innerIn, innerOut
 		}
 	}
 	if (outerOut) {
-		if (direction == "E") {
+		if (direction === "E") {
 			solutionCellLayerSet.layerSets["Out_Esq"].visible = true;
 			solutionCellLayerSet.layerSets["Out_Esq"].layers["Fletxa"].visible = false;
 		} else {
@@ -174,6 +174,34 @@ function makeSolutionCell(direction, index, outerIn, outerOut, innerIn, innerOut
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Un cop generada l'imatge, des de Photoshop s'ha esborrar les parts necessàries dels cercles que connecten les fletxes
+{
+	// Direcció d'inici + ameba per trobar
+	// E (esquerra) o D (dreta) + tres caràcters per definir l'ameba
+	"init": "EGTP",
+
+	// Cercle de llosetes (E és de baix a dalt, D és de dalt a baix)
+	"grid": [
+		"V",
+		"CTP",
+		"CLP",
+		"GTP",
+		"CTR",
+		"GTR",
+		"GLP",
+		"MF",
+		"GTP",
+		"GLR",
+		"MP",
+		"R",
+		"GTR",
+		"CTR",
+		"GTP",
+		"R"
+	]
+}
 */
 var LAYER_NAMES = {
     "CLR": "Calamar lila ratlles",
@@ -212,40 +240,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Direcció d'inici + ameba per trobar
-// E (esquerra) o D (dreta) + tres caràcters per definir l'ameba
-var init = "EGTP";
-
-// Cercle de llosetes (E és de baix a dalt, D és de dalt a baix)
-var grid = [
-    "V",
-    "CTP",
-    "CLP",
-    "GTP",
-    "CTR",
-    "GTR",
-    "GLP",
-    "MF",
-    "GTP",
-    "GLR",
-    "MP",
-    "R",
-    "GTR",
-    "CTR",
-    "GTP",
-    "R",
-];
-
-makeInit(init);
-
-for (var cell = 0; cell < grid.length; cell++) {
-    makeCell(cell + 1, grid[cell]);
-}
-
-makeSolution(init, grid);
-*/

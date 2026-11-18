@@ -51,7 +51,7 @@ function makeFulles(fulles) {
 		fullesLayer.layerSets["F" + (f+1)].layers["Número"].textItem.contents = fulles[f][0];
 		
 		// SOLUCIÓ
-		if (fulles[f][1] != "") {
+		if (fulles[f][1] !== "") {
 			var solucioTaulerLayer = template.layerSets["Solució"].layerSets["Tauler"].layerSets[fulles[f][1]];
 			var solucioFullaLayer = template.layerSets["Solució"].layerSets["Fulles"];
 			
@@ -72,6 +72,28 @@ function makeFulles(fulles) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Deixar amb " " els espais buits
+// - 2 forats: fàcil
+// - 3 forats: complicat
+
+{
+	"grid": [
+		["1", "2", " ", "12"],
+		[" ", "5", "9", "15"],
+		["7", " ", "14", "17"],
+		["9", "12", "16", "18"]
+	],
+
+	// Número i posició del grid en cas que sigui part de la solució ("" si no)
+	"fulles": [
+		["8", "1_3"],
+		["12", ""],
+		["9", "3_2"],
+		["4", "2_1"]
+	]
+}
 */
 function main() {
 
@@ -88,31 +110,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Deixar amb " " els espais buits
-// 2 forats: fàcil
-// 3 forats: complicat
-var grid = [
-    ["1",  "2",  " ",  "12"],
-    [" ",  "5",  "9",  "15"],
-    ["7",  " ",  "14", "17"],
-    ["9",  "12", "16", "18"],
-	//grid reset
-	// [" ",	" ",	" ",	" "],
-];
-
-// Número i posició del grid en cas que sigui part de la solució ("" si no)
-var fulles = [
-    ["8", "1_3"],
-    ["12", ""],
-    ["9", "3_2"],
-    ["4", "2_1"]
-];
-
-makeTauler(grid);
-makeFulles(fulles);
-*/

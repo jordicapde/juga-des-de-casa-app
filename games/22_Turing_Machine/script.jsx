@@ -108,6 +108,27 @@ function makeSolution(codi) {
 	template.layerSets["Solució"].layers["Rodona"].textItem.contents = codi[2];
 }
 
+/*
+==================================================
+3. MAIN
+==================================================
+// Configuration file example
+
+{
+	"codi": "541",
+
+	// Màxim 3 pistes per banda
+	"pistes_correctes": [
+		{"pista_index": 15, "OP": "descendent"},
+		{"pista_index": 4, "X": "triangle", "Y": "quadrat", "OP": "=", "N": "9"}
+	],
+
+	"pistes_incorrectes": [
+		{"pista_index": 7, "OP1": "parells", "OP2": "senars"},
+		{"pista_index": 1, "X": "rodona", "OP": ">", "N": "1"}
+	]
+}
+*/
 var TEXT_PISTES = [
 	// X, Y i Z són triangle, quadrat o rodona
 	// N és un número
@@ -141,11 +162,6 @@ var TEXT_PISTES = [
 /* 16 */	"Els nombres no tenen ordre",
 ];
 
-/*
-==================================================
-3. MAIN
-==================================================
-*/
 function main() {
 
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -171,34 +187,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-var codi = "541";
-
-// Màxim 3 pistes per banda
-var pistes_correctes = [
-    {"pista_index": 15, "OP": "descendent"},
-    {"pista_index": 4, "X": "triangle", "Y": "quadrat", "OP": "=", "N": "9"},
-];
-
-var pistes_incorrectes = [
-    {"pista_index": 7, "OP1": "parells", "OP2": "senars"},
-    {"pista_index": 1, "X": "rodona", "OP": ">", "N": "1"},
-];
-
-
-for (var i = 0; i < pistes_correctes.length; i++) {
-    var pistaLayer = template.layerSets["Pistes"].layerSets["Correctes"];
-    makePista(pistaLayer.layerSets["P" + (i + 1)], pistes_correctes[i]);
-}
-
-for (var i = 0; i < pistes_incorrectes.length; i++) {
-    var pistaLayer = template.layerSets["Pistes"].layerSets["Incorrectes"];
-    makePista(pistaLayer.layerSets["P" + (i + 1)], pistes_incorrectes[i]);
-}
-
-makeSolution(codi);
-*/

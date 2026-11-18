@@ -30,16 +30,16 @@ function makeCarta(index, carta) {
 ==================================================
 3. MAIN
 ==================================================
+No s'ha de canviar res, simplement seleccionem 3 cartes a l'atzar
+
+Per les solucions:
+   - s'ha de fer seleccions rodones a cada objecte (en la capa de solució corresponent)
+   - contornejar cada selecció amb 2px
+   - a Trazados, hi ha les línies per unir els objectes
+   - s'ha de modificar el traçat i contornejar amb 2px cadascun
 */
 function main() {
     var TOTAL_NUM_TILES = 16;
-
-    // No s'ha de canviar res, simplement seleccionem 3 cartes a l'atzar
-    // Per les solucions:
-    //    - s'ha de fer seleccions rodones a cada objecte (en la capa de solució corresponent)
-    //    - contornejar cada selecció amb 2px
-    //    - a Trazados, hi ha les línies per unir els objectes
-    //    - s'ha de modificar el traçat i contornejar amb 2px cadascun
 
     var cartes = UtilsTools.generateUniqueRandomNumbers(3, TOTAL_NUM_TILES);
     for (var carta = 0; carta < cartes.length; carta++)

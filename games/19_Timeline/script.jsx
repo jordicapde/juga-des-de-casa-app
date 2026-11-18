@@ -47,6 +47,16 @@ function _makeCarta(carta, cartaLayer) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+{
+	"cartes": [
+		{"lletra": "A", "titol": "La impremta", "imatge": "impremta", "solucio": 1437},
+		{"lletra": "B", "titol": "El paper", "imatge": "paper", "solucio": -200},
+		{"lletra": "C", "titol": "El diari de paper", "imatge": "diari", "solucio": 1605},
+		{"lletra": "D", "titol": "L'enciclopèdia", "imatge": "enciclopedia", "solucio": 1751}
+	]
+}
 */
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -71,29 +81,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-
-var cartes = [
-    {"lletra": "A", "titol": "La impremta", "imatge": "impremta", "solucio": 1437},
-    {"lletra": "B", "titol": "El paper", "imatge": "paper", "solucio": -200},
-    {"lletra": "C", "titol": "El diari de paper", "imatge": "diari", "solucio": 1605},
-    {"lletra": "D", "titol": "L'enciclopèdia", "imatge": "enciclopedia", "solucio": 1751},
-];
-
-for (var carta = 0; carta < cartes.length; carta++) {
-    makeCarta(carta + 1, cartes[carta]);
-}
-
-// Ordenar segons solució
-cartes.sort(function(a, b) {
-    return a.solucio - b.solucio;
-});
-
-for (var carta = 0; carta < cartes.length; carta++) {
-    makeSolucio(carta + 1, cartes[carta]);
-}
-*/

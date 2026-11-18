@@ -23,9 +23,9 @@ function makeGrid(grid, gridLayer) {
 		var row = grid[r][0].concat(grid[r][1]);
 		
 		for (var c = 0; c < row.length; c++) {
-			if (row[c] == "B")
+			if (row[c] === "B")
 				PhotoshopTools.replaceSmartObjectContent(PATHS.assets + "/bola_blanca.png", gridLayer.layers[(r+1) + "_" + (c+1)]);
-			else if (row[c] == "N")
+			else if (row[c] === "N")
 				PhotoshopTools.replaceSmartObjectContent(PATHS.assets + "/bola_negra.png", gridLayer.layers[(r+1) + "_" + (c+1)]);
 		}
 	}
@@ -49,24 +49,24 @@ function makeSolution(grid, solution_1, solution_2) {
 	
 	// Hint solució tauler 2
 	template.layerSets["Solució"].layerSets["Tauler 2"].layerSets["Solució"].layers["Quadrant " + solution_2[0]].visible = true;
-	if (solution_2[1] == "C")
+	if (solution_2[1] === "C")
 		template.layerSets["Solució"].layerSets["Tauler 2"].layerSets["Solució"].layers["Quadrant " + solution_2[0]].resize(-100, undefined, AnchorPosition.MIDDLECENTER);
 	
 	// TAULER 3
 	var quadrant;
-	if (solution_2[0] == 1) {
+	if (solution_2[0] === 1) {
 		quadrant = [
 			grid[0][0],
 			grid[1][0],
 			grid[2][0]
 		];
-	} else if (solution_2[0] == 2) {
+	} else if (solution_2[0] === 2) {
 		quadrant = [
 			grid[0][1],
 			grid[1][1],
 			grid[2][1]
 		];
-	} else if (solution_2[0] == 3) {
+	} else if (solution_2[0] === 3) {
 		quadrant = [
 			grid[3][0],
 			grid[4][0],
@@ -97,7 +97,7 @@ function rotateQuadrant(grid, direction) {
 		}
 	}
 	
-	if (direction == "H") {
+	if (direction === "H") {
 		// Horari
 		grid[0][0] = original[2][0];
 		grid[0][1] = original[1][0];
@@ -128,6 +128,27 @@ function rotateQuadrant(grid, direction) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+{
+	"tauler": [
+		[[" ", "N", " "], ["N", " ", " "]],
+		[["B", " ", "B"], ["N", "N", "B"]],
+		[[" ", " ", "B"], ["B", "B", " "]],
+
+		[[" ", " ", "N"], [" ", " ", "N"]],
+		[[" ", "N", "B"], ["B", "B", "N"]],
+		[["N", " ", "B"], [" ", "N", " "]]
+	],
+
+	// Moviments necessaris per la solució
+	// 1. On es coloca la nova bola blanca? (fila_columna, de 1 a 6)
+	"solution_1": "1_3",
+
+	// 2. Quin quadrant gira i cap a on?
+	// Número de quadrant (1 a 4) i "H" per horari o "C" per contrahorari
+	"solution_2": [1, "H"]
+}
 */
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -144,39 +165,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-var tauler = [
-    [[" ", "N", " "], ["N", " ", " "]],
-    [["B", " ", "B"], ["N", "N", "B"]],
-    [[" ", " ", "B"], ["B", "B", " "]],
-
-    [[" ", " ", "N"], [" ", " ", "N"]],
-    [[" ", "N", "B"], ["B", "B", "N"]],
-    [["N", " ", "B"], [" ", "N", " "]],
-
-    // grid reset
-    /*
-    [[" ", " ", " "], [" ", " ", " "]],
-    [[" ", " ", " "], [" ", " ", " "]],
-    [[" ", " ", " "], [" ", " ", " "]],
-
-    [[" ", " ", " "], [" ", " ", " "]],
-    [[" ", " ", " "], [" ", " ", " "]],
-    [[" ", " ", " "], [" ", " ", " "]],
-    * /
-];
-
-// Moviments necessaris per la solució
-// 1. On es coloca la nova bola blanca? (fila_columna, de 1 a 6)
-var solution_1 = "1_3";
-// 2. Quin quadrant gira i cap a on?
-// Número de quadrant (1 a 4) i "H" per horari o "C" per contrahorari
-var solution_2 = [1, "H"];
-
-makeGrid(tauler, template.layerSets["Problema"].layerSets["Tauler"]);
-makeSolution(tauler, solution_1, solution_2);
-*/

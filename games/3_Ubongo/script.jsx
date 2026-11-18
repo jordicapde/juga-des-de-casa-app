@@ -46,6 +46,28 @@ function makePeces(peces) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Primer:
+// 	- mirar el PDF amb taulers i escollir-ne un
+// 	- definir a sota el grid i les peces a utilitzar
+// 	- executar aquest script
+// Passos manuals després d'executar l'script:
+// 	- copiar i enganxar l'estil a la capa "Caselles"
+// 	- centrar la capa "Caselles"
+// 	- combinar la capa "Caselles" amb el grup de "Peces" i executar la macro d'Ubongo
+{
+	"peces": ["BRO", "GRE", "YEL"],
+
+	// Marcar amb una X les caselles que formin part del tauler
+	"grid": [
+		["X", "X", "X", " ", " "],
+		["X", "X", "X", "X", " "],
+		["X", "X", "X", "X", " "],
+		["X", " ", " ", "X", " "],
+		[" ", " ", " ", " ", " "]
+	]
+}
 */
 var ASSETS_NAMES = {
     "L_GRE": "1",  // L Tetris
@@ -76,39 +98,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Primer:
-// 	- mirar el PDF amb taulers i escollir-ne un
-// 	- definir a sota el grid i les peces a utilitzar
-// 	- executar aquest script
-// Passos manuals després d'executar l'script:
-// 	- copiar i enganxar l'estil a la capa "Caselles"
-// 	- centrar la capa "Caselles"
-// 	- combinar la capa "Caselles" amb el grup de "Peces" i executar la macro d'Ubongo
-
-var peces = ["BRO", "GRE", "YEL"];
-
-// Marcar amb una X les caselles que formin part del tauler
-var grid = [
-    ["X", "X", "X", " ", " "],
-    ["X", "X", "X", "X", " "],
-    ["X", "X", "X", "X", " "],
-    ["X", " ", " ", "X", " "],
-    [" ", " ", " ", " ", " "],
-    // grid reset
-    /*
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    * /
-];
-
-makeTauler(grid);
-makePeces(peces);
-*/

@@ -35,11 +35,11 @@ PhotoshopTools.rotateLayer = function(rotation, rotatedLayer) {
 		6: com 2 però flip horitzontal
 		7: com 3 però flip horitzontal
 	*/
-	if (rotation == 1 || rotation == 5)
+	if (rotation === 1 || rotation === 5)
 		rotatedLayer.rotate(90, AnchorPosition.MIDDLECENTER);
-	if (rotation == 2 || rotation == 6)
+	if (rotation === 2 || rotation === 6)
 		rotatedLayer.rotate(180, AnchorPosition.MIDDLECENTER);
-	if (rotation == 3 || rotation == 7)
+	if (rotation === 3 || rotation === 7)
 		rotatedLayer.rotate(270, AnchorPosition.MIDDLECENTER);
 
 	if (rotation >= 4)

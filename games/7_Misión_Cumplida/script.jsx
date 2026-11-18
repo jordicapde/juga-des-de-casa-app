@@ -24,11 +24,11 @@ function makeMissio(missio, missioLayer) {
 		
 		var color = missio["color"];
 		
-		if (color == "R")
+		if (color === "R")
 			missioLayer.layerSets["Text"].layers["Vermell"].visible = true;
-		else if (color == "B")
+		else if (color === "B")
 			missioLayer.layerSets["Text"].layers["Blau"].visible = true;
-		else if (color == "G")
+		else if (color === "G")
 			missioLayer.layerSets["Text"].layers["Verd"].visible = true;
 		else
 			missioLayer.layerSets["Text"].layers["Groc"].visible = true;
@@ -38,11 +38,11 @@ function makeMissio(missio, missioLayer) {
 		
 		var color = missio["color1"];
 		
-		if (color == "R")
+		if (color === "R")
 			missioLayer.layerSets["Text"].layers["Vermell"].visible = true;
-		else if (color == "B")
+		else if (color === "B")
 			missioLayer.layerSets["Text"].layers["Blau"].visible = true;
-		else if (color == "G")
+		else if (color === "G")
 			missioLayer.layerSets["Text"].layers["Verd"].visible = true;
 		else
 			missioLayer.layerSets["Text"].layers["Groc"].visible = true;
@@ -52,11 +52,11 @@ function makeMissio(missio, missioLayer) {
 		
 		var color = missio["color2"];
 		
-		if (color == "R")
+		if (color === "R")
 			missioLayer.layerSets["Text"].layers["Vermell"].visible = true;
-		else if (color == "B")
+		else if (color === "B")
 			missioLayer.layerSets["Text"].layers["Blau"].visible = true;
-		else if (color == "G")
+		else if (color === "G")
 			missioLayer.layerSets["Text"].layers["Verd"].visible = true;
 		else
 			missioLayer.layerSets["Text"].layers["Groc"].visible = true;
@@ -73,11 +73,11 @@ function makeCarta(carta, cartaLayer) {
 	var color = carta[1];
 	
 	cartaLayer.layers["Número"].textItem.contents = numero;
-	if (color == "R")
+	if (color === "R")
 		cartaLayer.layers["Vermell"].visible = true;
-	else if (color == "B")
+	else if (color === "B")
 		cartaLayer.layers["Blau"].visible = true;
-	else if (color == "G")
+	else if (color === "G")
 		cartaLayer.layers["Verd"].visible = true;
 	else
 		cartaLayer.layers["Groc"].visible = true;
@@ -98,6 +98,35 @@ function makeSolution(solution_missio, solution_fletxa) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+{
+	// 3 missions
+	"missions": [
+		{"text_index": 17},
+		{"text_index": 12, "color": "R"},
+		{"text_index": 7}
+	],
+
+	// 4 cartes en joc (número de l'1 al 7 + R/B/G/Y)
+	"cartes_joc": [
+		"4R",
+		"1Y",
+		"2B",
+		"7R"
+	],
+
+	// 3 cartes a la mà
+	"cartes_ma": [
+		"4Y",
+		"3B",
+		"7G"
+	],
+
+	// Solució (número de missió complerta + fletxa de la carta en mà que entra)
+	"solution_missio": 1, // número de 1 a 3
+	"solution_fletxa": "3_4" // número de carta en mà (1 a 3) + número de carta en joc substituida (1 a 4)
+}
 */
 var TEXT_MISSIONS = [
     /* 0 */  "Les cartes {color1} sumen el doble que les {color2}",
@@ -139,7 +168,7 @@ function main() {
 
     // Substituir els índexs de text de les missions pels textos corresponents
     for (var i = 0; i < missions.length; i++) {
-        missions[i].text = TEXT_MISSIONS[missions[i].text];
+        missions[i].text = TEXT_MISSIONS[missions[i].text_index];
     }
 
     for (var i = 0; i < missions.length; i++) {
@@ -158,48 +187,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// 3 missions (veure textos anteriors)
-var missions = [
-    {"text": TEXT_MISSIONS[17]},
-    {"text": TEXT_MISSIONS[12], "color": "R"},
-    {"text": TEXT_MISSIONS[7]},
-];
-
-// 4 cartes en joc (número de l'1 al 7 + R/B/G/Y)
-var cartes_joc = [
-    "4R",
-    "1Y",
-    "2B",
-    "7R"
-];
-
-// 3 cartes a la mà
-var cartes_ma = [
-    "4Y",
-    "3B",
-    "7G"
-];
-
-// Solució (número de missió complerta + fletxa de la carta en mà que entra)
-var solution_missio = 1; // número de 1 a 3
-var solution_fletxa = "3_4"; // número de carta en mà (1 a 3) + número de carta en joc substituida (1 a 4)
-
-for (var i = 0; i < missions.length; i++) {
-    makeMissio(missions[i], template.layerSets["Missions"].layerSets["M" + (i + 1)]);
-}
-
-for (var i = 0; i < cartes_joc.length; i++) {
-    makeCarta(cartes_joc[i], template.layerSets["Cartes en joc"].layerSets["C" + (i + 1)]);
-}
-
-for (var i = 0; i < cartes_ma.length; i++) {
-    makeCarta(cartes_ma[i], template.layerSets["Mà"].layerSets["C" + (i + 1)]);
-}
-
-makeSolution(solution_missio, solution_fletxa);
-*/

@@ -39,6 +39,31 @@ function makeRow(index, row) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Cada concept pot tenir:
+// - un màxim de 3 files
+// - un màxim de 5 elements per fila
+{
+	"concept": [
+		// DOBBY
+		//[{"icon": "persona", "text": "Personatge"}, {"icon": "ficció", "text": "Ficció"}, {"icon": "baix", "text": "Baix"}],
+		//[{"icon": "orella", "text": ""}, {"icon": "ull", "text": ""}, {"icon": "gros", "text": "Gran"}],
+		//[{"icon": "roba", "text": "Roba"}, {"icon": "dintre", "text": "Dintre"}, {"icon": "literatura", "text": "Llibre"}],
+		// HAGRID
+		//[{"icon": "home", "text": ""}, {"icon": "adult", "text": "Adult"}, {"icon": "alt", "text": "Alt"}, {"icon": "gros", "text": "Gran"}],
+		//[{"icon": "vida", "text": ""}, {"icon": "animal", "text": ""}],
+		//[{"icon": "vehicle_terrestre", "text": "Moto"}, {"icon": "artefacte_volador", "text": "Volador"}],
+		// MCGONAGALL
+		//[{"icon": "dona", "text": ""}, {"icon": "adult", "text": "Adult"}],
+		//[{"icon": "feina", "text": "Feina"}, {"icon": "literatura", "text": "Professor"}],
+		//[{"icon": "persona", "text": "Persona"}, {"icon": "oposat", "text": ""}, {"icon": "animal", "text": "Gat"}],
+		// VOLDEMORT
+		[{"icon": "home", "text": ""}, {"icon": "adult", "text": "Adult"}, {"icon": "prim", "text": "Prim"}],
+		[{"icon": "cap", "text": "Pell"}, {"icon": "gris", "text": ""}, {"icon": "verd", "text": ""}, {"icon": "transparent", "text": ""}],
+		[{"icon": "mort", "text": ""}, {"icon": "conflicte", "text": ""}, {"icon": "trist", "text": ""}]
+	]
+}
 */
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -57,39 +82,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Cada concept pot tenir:
-// - un màxim de 3 files
-// - un màxim de 5 elements per fila
-var concept = [
-    // DOBBY
-    //[{"icon": "persona", "text": "Personatge"}, {"icon": "ficció", "text": "Ficció"}, {"icon": "baix", "text": "Baix"}],
-    //[{"icon": "orella", "text": ""}, {"icon": "ull", "text": ""}, {"icon": "gros", "text": "Gran"}],
-    //[{"icon": "roba", "text": "Roba"}, {"icon": "dintre", "text": "Dintre"}, {"icon": "literatura", "text": "Llibre"}],
-    // HAGRID
-    //[{"icon": "home", "text": ""}, {"icon": "adult", "text": "Adult"}, {"icon": "alt", "text": "Alt"}, {"icon": "gros", "text": "Gran"}],
-    //[{"icon": "vida", "text": ""}, {"icon": "animal", "text": ""}],
-    //[{"icon": "vehicle_terrestre", "text": "Moto"}, {"icon": "artefacte_volador", "text": "Volador"}],
-    // MCGONAGALL
-    //[{"icon": "dona", "text": ""}, {"icon": "adult", "text": "Adult"}],
-    //[{"icon": "feina", "text": "Feina"}, {"icon": "literatura", "text": "Professor"}],
-    //[{"icon": "persona", "text": "Persona"}, {"icon": "oposat", "text": ""}, {"icon": "animal", "text": "Gat"}],
-    // VOLDEMORT
-    [{"icon": "home", "text": ""}, {"icon": "adult", "text": "Adult"}, {"icon": "prim", "text": "Prim"}],
-    [{"icon": "cap", "text": "Pell"}, {"icon": "gris", "text": ""}, {"icon": "verd", "text": ""}, {"icon": "transparent", "text": ""}],
-    [{"icon": "mort", "text": ""}, {"icon": "conflicte", "text": ""}, {"icon": "trist", "text": ""}],
-];
-
-var template = app.activeDocument;
-
-for (var row = 0; row < concept.length; row++) {
-    var conceptRow = concept[row];
-
-    if (conceptRow.length > 0)
-        makeRow(row, conceptRow);
-}
-*/

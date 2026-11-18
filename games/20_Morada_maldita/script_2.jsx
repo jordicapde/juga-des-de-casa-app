@@ -27,7 +27,7 @@ function makeCarta(cartaContent, cartaIndex) {
 			var color = cartaContent["param"][0];
 			var forma = FORMA_ASSET[cartaContent["param"][1]];
 			
-			if (color == "multi") {
+			if (color === "multi") {
 				// FORMA I MULTICOLOR
 				cartaLayer.layerSets["Forma"].layerSets["Multicolor"].visible = true;
 				titol = "Forma";
@@ -47,7 +47,7 @@ function makeCarta(cartaContent, cartaIndex) {
 			cartaLayer.layerSets["Color"].visible = true;
 			
 			var colorSup, colorInf;
-			if (cartaContent["param"].length == 1) {
+			if (cartaContent["param"].length === 1) {
 				// UN COLOR
 				titol = "Un color";
 				
@@ -71,7 +71,7 @@ function makeCarta(cartaContent, cartaIndex) {
 			titol = "Nombre costats";
 			var costats = cartaContent["param"][0];
 			
-			if (costats.length == 1) {
+			if (costats.length === 1) {
 				// NÚMERO
 				cartaLayer.layerSets["Nombre costats"].layers["Número"].visible = true;
 				cartaLayer.layerSets["Nombre costats"].layers["Número"].textItem.contents = costats;
@@ -93,6 +93,35 @@ function makeCarta(cartaContent, cartaIndex) {
 	template.layerSets["Solució"].layerSets["Inactives"].layers["G" + cartaContent["solucio"]].visible = false;
 }
 
+/*
+==================================================
+3. MAIN
+==================================================
+// Configuration file example
+
+// Exemple de configuració de les cartes
+{
+	"cartes": [
+		{
+			// pot ser "forma", "color" o "costats"
+			"tipus": "costats",
+
+			// si és forma: definir primer si és "multi" (qualsevol color) o bé un COLOR_NAMES en concret, després definir el FORMA_ASSET
+			// si és color: definir els dos COLOR_NAMES (pot ser només un si es vol només un color)
+			// si és costats: definir el text pel número o bé l'operació en un sol element ("3+2" / "4-1" / "5" / ...)
+			"param": ["5+1"],
+
+			// índex de la gemma solució (començant per 1)
+			"solucio": "14"
+		},
+		{
+			"tipus": "costats",
+			"param": ["7"],
+			"solucio": "17"
+		}
+	]
+}
+*/
 var COLOR_NAMES = {
 	"R": "Vermell",
 	"Y": "Groc",
@@ -115,11 +144,6 @@ var FORMA_ASSET = {
 	"8L": "55" // Octògon allargat
 };
 
-/*
-==================================================
-3. MAIN
-==================================================
-*/
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
     if (config == null) {
@@ -134,34 +158,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-
-// Exemple de configuració de les cartes
-var cartes = [
-    {
-        // pot ser "forma", "color" o "costats"
-        "tipus": "costats",
-
-        // si és forma: definir primer si és "multi" (qualsevol color) o bé un COLOR_NAMES en concret, després definir el FORMA_ASSET
-        // si és color: definir els dos COLOR_NAMES (pot ser només un si es vol només un color)
-        // si és costats: definir el text pel número o bé l'operació en un sol element ("3+2" / "4-1" / "5" / ...)
-        "param": ["5+1"],
-
-        // índex de la gemma solució (començant per 1)
-        "solucio": "14"
-    },
-    {
-        "tipus": "costats",
-        "param": ["7"],
-        "solucio": "17"
-    },
-];
-
-for (var carta = 0; carta < cartes.length; carta++) {
-    makeCarta(cartes[carta], carta);
-}
-*/

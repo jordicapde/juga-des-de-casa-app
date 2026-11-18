@@ -39,6 +39,24 @@ function makeSolucio(forat, foratContent, solucioLloseta, solucioContent) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// S'ha de deixar la imatge a punt amb el forat buit i la imatge d'interrogant en aquest.
+// De fet, abans d'executar aquest script per obtenir la solució s'ha de guardar la imatge del problema.
+
+{
+	// fila_columna on hi ha el forat al taulell
+	"forat": "3_4",
+
+	// Número del contingut de la lloseta del forat (només per poder trobar la capa pel nom)
+	"foratContent": "2",
+
+	// Índex de la lloseta que és la solució
+	"solucioLloseta": "3",
+
+	// Número del contingut de la lloseta solució
+	"solucioContent": "27"
+}
 */
 function main() {
 
@@ -56,24 +74,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-	// S'ha de deixar la imatge a punt amb el forat buit i la imatge d'interrogant en aquest.
-	// De fet, abans d'executar aquest script s'ha de guardar la imatge del problema.
-	//
-	// Paràmetres:
-	// 	- forat: fila_columna on hi ha el forat al taulell
-	// 	- foratContent: número del contingut de la lloseta del forat (només per poder trobar la capa pel nom)
-	// 	- solucioLloseta: índex de la lloseta que és la solució
-	// 	- solucioContent: número del contingut de la lloseta solució
-
-	var forat = "3_4";
-	var foratContent = "2";
-	var solucioLloseta = "3";
-	var solucioContent = "27";
-
-	makeSolucio(forat, foratContent, solucioLloseta, solucioContent);
-*/

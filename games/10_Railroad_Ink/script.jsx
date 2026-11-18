@@ -72,6 +72,53 @@ function makeSolucio(daus, solucio) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Les cel·les tenen el següent contingut:
+// 	{asset_name}-{rotacio}
+//
+// on rotacio pot ser:
+// 	0: sense rotació
+// 	1: 90º
+// 	2: 180º
+// 	3: 270º
+// 	4: com 0 però flip sobre eix vertical
+// 	5: com 1 però flip sobre eix vertical
+// 	6: com 2 però flip sobre eix vertical
+// 	7: com 3 però flip sobre eix vertical
+//
+// Originalment:
+// 	- les corbes estan orientades a l'esquerra-amunt
+// 	- les rectes estan orientades verticalment
+// 	- les T apunten cap a amunt
+// 	- les estacions comencen amb la carretera amunt
+// 	- les creus que són combinació de carretera i tren, comencen amb les carreteres apuntant amunt i a l'esquerra
+{
+	"grid": [
+		["    ", "    ", "    ", "TT-3", "    "],
+		["    ", "    ", "    ", "TR-0", "TC-2"],
+		["    ", "    ", "    ", "    ", "EC-5"],
+		["    ", "    ", "CT-1", "    ", "    "],
+		["    ", "CC-2", "    ", "    ", "    "]
+	],
+
+	// Les sortides estan numerades de l'1 al 8, començant per dalt i en sentit horari
+	"sortides": ["2", "3", "6"],
+
+	"daus": [
+		"X2",
+		"EC",
+		"CC"
+	],
+
+	// L'element "n" de la solució correspon al dau "n"
+	// Cada element té posició de la solució i rotació
+	"solucio": [
+		["3_4", 2],
+		["3_3", 2],
+		["5_3", 0]
+	]
+}
 */
 var ASSETS_NAMES = {
     "TC": "tren_corba",
@@ -115,72 +162,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Les cel·les tenen el següent contingut:
-// 	{asset_name}-{rotacio}
-//
-// on rotacio pot ser:
-// 	0: sense rotació
-// 	1: 90º
-// 	2: 180º
-// 	3: 270º
-// 	4: com 0 però flip sobre eix vertical
-// 	5: com 1 però flip sobre eix vertical
-// 	6: com 2 però flip sobre eix vertical
-// 	7: com 3 però flip sobre eix vertical
-//
-// Originalment:
-// 	- les corbes estan orientades a l'esquerra-amunt
-// 	- les rectes estan orientades verticalment
-// 	- les T apunten cap a amunt
-// 	- les estacions comencen amb la carretera amunt
-// 	- les creus que són combinació de carretera i tren, comencen amb les carreteres apuntant amunt i a l'esquerra
-
-var grid = [
-    ["    ", "    ", "    ", "TT-3", "    "],
-    ["    ", "    ", "    ", "TR-0", "TC-2"],
-    ["    ", "    ", "    ", "    ", "EC-5"],
-    ["    ", "    ", "CT-1", "    ", "    "],
-    ["    ", "CC-2", "    ", "    ", "    "]
-    // grid reset
-    /*
-    ["    ", "    ", "    ", "    ", "    "],
-    ["    ", "    ", "    ", "    ", "    "],
-    ["    ", "    ", "    ", "    ", "    "],
-    ["    ", "    ", "    ", "    ", "    "],
-    ["    ", "    ", "    ", "    ", "    "]
-    * /
-];
-
-// Les sortides estan numerades de l'1 al 8, començant per dalt i en sentit horari
-var sortides = ["2", "3", "6"];
-
-var daus = [
-    "X2",
-    "EC",
-    "CC"
-];
-
-// L'element "n" de la solució correspon al dau "n"
-// Cada element té posició de la solució i rotació
-var solucio = [
-    ["3_4", 2],
-    ["3_3", 2],
-    ["5_3", 0]
-];
-
-for (var row = 0; row < grid.length; row++) {
-    for (var col = 0; col < grid[row].length; col++) {
-        if (grid[row][col] !== "    ")
-            makeTauler(grid[row][col], (row + 1) + "_" + (col + 1));
-    }
-}
-
-makeSortides(sortides);
-makeDaus(daus);
-makeSolucio(daus, solucio);
-*/

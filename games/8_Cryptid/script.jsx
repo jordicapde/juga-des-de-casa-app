@@ -39,6 +39,8 @@ function randomLandType(grid) {
 ==================================================
 3. MAIN
 ==================================================
+
+No hi ha configuració, simplement s'executa i genera un tauler aleatori.
 */
 function main() {
     for (var col = 1; col <= COLS; col++) {

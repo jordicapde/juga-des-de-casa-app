@@ -30,9 +30,9 @@ function makeInit(letters, solutionLength) {
 	}
 	
 	// Grup de cartes
-	if (lettersLength == 4) {
+	if (lettersLength === 4) {
 		lettersLayerSet = template.layerSets["Cartes"].layerSets["4 cartes"];
-	} else if (lettersLength == 5) {
+	} else if (lettersLength === 5) {
 		lettersLayerSet = template.layerSets["Cartes"].layerSets["5 cartes"];
 	} else {
 		lettersLayerSet = template.layerSets["Cartes"].layerSets["6 cartes"];
@@ -79,6 +79,21 @@ function makeSolution(solutions) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+{
+	// Lletres inicials
+	// Pot tenir entre 4 i 6 lletres
+	"init": "ROMTE",
+
+	// Solucions
+	// Un màxim de 3 (només 1 si són 6 lletres)
+	"solutions": [
+		"METRO",
+		"REMOT",
+		"TEMOR"
+	]
+}
 */
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -94,23 +109,3 @@ function main() {
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-// Lletres inicials
-// Pot tenir entre 4 i 6 lletres
-var init = "ROMTE";
-
-// Solucions
-// Un màxim de 3 (només 1 si són 6 lletres)
-var solutions = [
-    "METRO",
-    "REMOT",
-    "TEMOR",
-];
-
-makeInit(init, solutions.length);
-makeSolution(solutions);
-*/

@@ -20,9 +20,9 @@ function makeGrid(grid, gridLayer) {
 	
 	for (var row = 0; row < 4; row++) {
 		for (var col = 0; col < 4; col++) {
-			if (grid[row][col] == "B")
+			if (grid[row][col] === "B")
 				gridLayer.layerSets[(row+1) + "_" + (col+1)].layers["Blanca"].visible = true;
-			else if (grid[row][col] == "N")
+			else if (grid[row][col] === "N")
 				gridLayer.layerSets[(row+1) + "_" + (col+1)].layers["Negra"].visible = true;
 		}
 	}
@@ -66,7 +66,7 @@ function makeSolution(grid, solution_1, solution_2, solution_4) {
 	// Hint solució tauler 3
 	for (var row = 0; row < 4; row++) {
 		for (var col = 0; col < 4; col++) {
-			if (grid[row][col] != " ")
+			if (grid[row][col] !== " ")
 				template.layerSets["Solució"].layerSets["Tauler 3"].layerSets["Solució"].layers[(row+1) + "_" + (col+1)].visible = true;
 		}
 	}
@@ -117,6 +117,27 @@ function rotateGrid(grid) {
 ==================================================
 3. MAIN
 ==================================================
+// Configuration file example
+
+// Moviments necessaris per la solució
+// - s'especifica les posicions del tauler amb un índex de 0 a 15 (que després es transformarà a fila-columna)
+{
+	"taulell": [
+		[" ", "B", "N", "B"],
+		[" ", "B", " ", "B"],
+		["B", "N", "N", "N"],
+		["N", "N", " ", "B"]
+	],
+
+	// 1. Quina bola negra es mou i cap a on? (buit si el pas no és necessari)
+	"solution_1": [10, 14],
+
+	// 2. On es coloca la nova bola blanca?
+	"solution_2": [10],
+
+	// 4. Quines són les 4 boles blanques en línia? (no s'utilitza)
+	"solution_4": []
+}
 */
 function main() {
     var config = ConfigTools.loadConfig(PATHS.config);
@@ -127,37 +148,10 @@ function main() {
     var taulell = config.taulell;
     var solution_1 = config.solution_1;
     var solution_2 = config.solution_2;
-    var solution_4 = config.solution_4;
+    var solution_4 = []; // no s'utilitza
 
     makeGrid(taulell, template.layerSets["Problema"].layerSets["Tauler"]);
     makeSolution(taulell, solution_1, solution_2, solution_4);
 }
 
 main();
-
-/*
-==================================================
-4. MAIN MANUAL INPUT (OLD VERSION)
-==================================================
-var taulell = [
-    [" ", "B", "N", "B"],
-    [" ", "B", " ", "B"],
-    ["B", "N", "N", "N"],
-    ["N", "N", " ", "B"]
-];
-
-// Moviments necessaris per la solució
-// - s'especifica les posicions del tauler amb un índex de 0 a 15 (que després es transformarà a fila-columna)
-
-// 1. Quina bola negra es mou i cap a on? (buit si el pas no és necessari)
-var solution_1 = [10, 14];
-
-// 2. On es coloca la nova bola blanca?
-var solution_2 = [10];
-
-// 4. Quines són les 4 boles blanques en línia?
-var solution_4 = []; // (no s'utilitza)[3, 6, 9, 12];
-
-makeGrid(taulell, template.layerSets["Problema"].layerSets["Tauler"]);
-makeSolution(taulell, solution_1, solution_2, solution_4);
-*/
