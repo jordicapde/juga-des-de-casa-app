@@ -25,5 +25,6 @@ pnpm-debug.log*
 # Photoshop templates
 *.psd
 
-# Generated output
+# Configuration and output directories
+config/
 out/
