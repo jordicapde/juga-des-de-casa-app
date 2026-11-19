@@ -19,15 +19,21 @@ export const games = [
     },
     {
         id: '4',
-        name: 'SMART10',
-        image: 'https://cf.geekdo-images.com/ulWDdnx-cyzHpAXYTxqMXA__original/img/RijbFfw4z7V0KYQ3rG545lgBXmg=/0x0/filters:format(jpeg)/pic9086289.jpg',
-        path: 'games/4_SMART10'
+        name: 'Break the code',
+        image: 'https://cf.geekdo-images.com/OnzOo8WGQVEGLIk-GFIzdg__original/img/kSXKBiOh6nFix2jFuR7VuYFzWBU=/0x0/filters:format(jpeg)/pic4920145.jpg',
+        path: 'games/4_Break_the_code'
     },
     {
         id: '5',
         name: 'Set',
         image: 'https://cf.geekdo-images.com/uEtWO_Ag8OxbG6NkSZbH6A__original/img/io2YlTwg9Be3eNt5BgWOsvpjPVU=/0x0/filters:format(png)/pic7627182.png',
         path: 'games/5_Set'
+    },
+    {
+        id: '6',
+        name: 'SMART10',
+        image: 'https://cf.geekdo-images.com/ulWDdnx-cyzHpAXYTxqMXA__original/img/RijbFfw4z7V0KYQ3rG545lgBXmg=/0x0/filters:format(jpeg)/pic9086289.jpg',
+        path: 'games/6_SMART10'
     },
     {
         id: '7',
@@ -52,6 +58,12 @@ export const games = [
         name: 'Railroad Ink',
         image: 'https://cf.geekdo-images.com/x3hjEgkxZE9M96o6wgj6Tw__original/img/aLU9rLTBaZhBK_U6YMUY8mmJnrM=/0x0/filters:format(png)/pic4097632.png',
         path: 'games/10_Railroad_Ink'
+    },
+    {
+        id: '11',
+        name: 'Pistas cruzadas',
+        image: 'https://cf.geekdo-images.com/ZN2V2U-Ng_nyBgsg9dxWCg__original/img/nZVqYbJ4vtNQnm58R20kmKlDlp0=/0x0/filters:format(jpeg)/pic5532617.jpg',
+        path: 'games/11_Pistas_cruzadas'
     },
     {
         id: '12',
