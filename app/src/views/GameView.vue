@@ -1,17 +1,29 @@
 <script setup>
-defineProps({
-    game: {
-        type: Object,
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { games } from '../data/games';
+
+const props = defineProps({
+    id: {
+        type: String,
         required: true
     }
 });
 
-defineEmits(['back']);
+const router = useRouter();
+
+const game = computed(() =>
+    games.find(game => game.id === props.id)
+);
+
+function goHome() {
+    router.push({ name: 'home' });
+}
 </script>
 
 <template>
     <main class="game-view">
-        <button class="back-button" @click="$emit('back')">
+        <button class="back-button" @click="goHome">
             ← Tornar als jocs
         </button>
 

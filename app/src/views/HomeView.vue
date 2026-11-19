@@ -1,26 +1,34 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import { games } from '../data/games';
-import GameCard from '../components/HomeGameCard.vue';
+import HomeGameCard from '../components/HomeGameCard.vue';
 
-defineEmits(['select-game']);
+const router = useRouter();
+
+function openGame(game) {
+    router.push({
+        name: 'game',
+        params: { id: game.id }
+    });
+}
 </script>
 
 <template>
     <main class="home">
-        <header class="home__header">
+        <header class="home_header">
             <h1>Juga des de casa</h1>
-            <p>Un espai per crear i configurar passatemps.</p>
+            <p>Una eina per facilitar la creació i la generació automàtica de jocs per les publicacions "Juga des de casa"</p>
         </header>
 
-        <section class="home__games">
+        <section class="home_games">
             <h2>Jocs disponibles</h2>
 
             <div class="games-grid">
-                <GameCard
-                    v-for="game in games"
-                    :key="game.id"
-                    :game="game"
-                    @select="$emit('select-game', $event)"
+                <HomeGameCard
+                  v-for="game in games"
+                  :key="game.id"
+                  :game="game"
+                  @select="openGame"
                 />
             </div>
         </section>
@@ -34,23 +42,23 @@ defineEmits(['select-game']);
     padding: 60px 32px;
 }
 
-.home__header {
+.home_header {
     margin-bottom: 60px;
 }
 
-.home__header h1 {
+.home_header h1 {
     margin: 0 0 8px;
     font-size: 38px;
     font-weight: 700;
 }
 
-.home__header p {
+.home_header p {
     margin: 0;
     color: #777;
     font-size: 16px;
 }
 
-.home__games h2 {
+.home_games h2 {
     margin-bottom: 24px;
     font-size: 22px;
 }
@@ -66,7 +74,7 @@ defineEmits(['select-game']);
         padding: 32px 20px;
     }
 
-    .home__header {
+    .home_header {
         margin-bottom: 40px;
     }
 }

@@ -18,8 +18,7 @@ defineEmits(['select']);
         />
 
         <div class="game-card__content">
-            <h2>{{ game.name }}</h2>
-            <span>Configurar joc →</span>
+            <h2>{{ game.id}}. {{ game.name }} →</h2>
         </div>
     </button>
 </template>
