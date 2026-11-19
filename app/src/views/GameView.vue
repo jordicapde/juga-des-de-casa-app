@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { games } from '../data/games';
+import TuringMachineView from "./games/TuringMachineView.vue";
 
 const props = defineProps({
     id: {
@@ -22,15 +23,23 @@ function goHome() {
 </script>
 
 <template>
-    <main class="game-view">
+    <div>
         <button class="back-button" @click="goHome">
             ← Tornar als jocs
         </button>
 
-        <h1>{{ game.name }}</h1>
+        <TuringMachineView v-if="game?.id === '22'" />
 
-        <p>La configuració d'aquest joc estarà disponible aquí.</p>
-    </main>
+        <main v-else-if="game" class="game-view">
+            <h1>{{ game.name }}</h1>
+            <p>La configuració d'aquest joc estarà disponible aquí.</p>
+        </main>
+
+        <main v-else class="game-view">
+            <h1>Joc no trobat</h1>
+            <p>No existeix cap joc amb aquest identificador.</p>
+        </main>
+    </div>
 </template>
 
 <style scoped>
